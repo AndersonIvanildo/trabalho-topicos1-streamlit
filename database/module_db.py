@@ -38,3 +38,5 @@ class DF_Acidentes():
     def get_dataframe_filtered(self, uf, municipio):
         filter = (df_acidentes['uf'] == uf) & (self.df_acidentes['municipio'] == municipio)
         return self.df_acidentes.loc[filter]
+
+df_acidentes_transito = DF_Acidentes()

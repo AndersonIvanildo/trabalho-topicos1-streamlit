@@ -1,8 +1,6 @@
 import streamlit as st
-from database.module_db import DF_Acidentes
+from database.module_db import df_acidentes_transito
 import plotly.express as px
-from pages.Cronologia import render_Overview
-df_acidentes_transito = DF_Acidentes()
 
 # Configurações gerais do Streamlit
 st.set_page_config(layout="wide")

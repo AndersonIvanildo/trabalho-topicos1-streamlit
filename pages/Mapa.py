@@ -1,8 +1,6 @@
 import streamlit as st
 import pydeck as pdk
-from database.module_db import DF_Acidentes
-
-df_acidentes_transito = DF_Acidentes()
+from database.module_db import df_acidentes_transito
 
 ######################################### CONTEÚDO DA SIDEBAR #########################################
 st.sidebar.header("Mapa Interativo")
