@@ -20,7 +20,7 @@ else:
     list_city = df_acidentes_transito.get_list_cities(uf_selected)
     city_selected = st.sidebar.selectbox("Selecione o Município", options=list_city)
     df_filtered = df_acidentes_transito.get_dataframe_filtered(uf_selected, city_selected)
-    center_uf = [df_filtered['longitude'].mean(), df_filtered['latitude'].mean()]
+    center_uf = [df_filtered['longitude'][0], df_filtered['latitude'][1]]
 
 ######################################### CONTEÚDO DA PÁGINA - MAPA #########################################
 st.markdown("### Mapa Interativo de Acidentes de Trânsito no Brasil")
@@ -34,27 +34,30 @@ with column_data:
     st.write(df_filtered)
 
 with column_map:
-    str_title_column_map = "### " + f'Confira abaixo o mapa para {uf_selected}'
-    st.markdown(str_title_column_map)
+    if uf_selected != "Todo o Brasil":
+        str_title_column_map = "### " + f'Confira abaixo o mapa para {uf_selected}'
+        st.markdown(str_title_column_map)
 
-    # Criar a camada de Dispersão para os acidentes
-    scatter_layer = pdk.Layer(
-        "ScatterplotLayer",
-        df_filtered,
-        get_position=['longitude', 'latitude'],
-        get_radius=500,
-        get_color=[152, 0, 67, 255],  # Cor vermelha
-        pickable=True
-    )
+        # Criar a camada de Dispersão para os acidentes
+        scatter_layer = pdk.Layer(
+            "ScatterplotLayer",
+            df_filtered,
+            get_position=['longitude', 'latitude'],
+            get_radius=500,
+            get_color=[152, 0, 67, 255],  # Cor vermelha
+            pickable=True
+        )
 
-    # Definir o estado de visualização do mapa
-    view_state = pdk.ViewState(
-        latitude=center_uf[0],
-        longitude=center_uf[1],
-        zoom=6,
-        pitch=0
-    )
+        # Definir o estado de visualização do mapa
+        view_state = pdk.ViewState(
+            latitude=center_uf[0],
+            longitude=center_uf[1],
+            zoom=6,
+            pitch=0
+        )
 
-    # Renderizar o mapa com ambas as camadas
-    r = pdk.Deck(layers=[scatter_layer], initial_view_state=view_state)
-    st.pydeck_chart(r, use_container_width=True)
+        # Renderizar o mapa com ambas as camadas
+        r = pdk.Deck(layers=[scatter_layer], initial_view_state=view_state)
+        st.pydeck_chart(r, use_container_width=True)
+    else:
+        st.markdown("### Por favor, selecione um estado!")
