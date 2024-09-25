@@ -14,13 +14,17 @@ isMarked = st.sidebar.checkbox("Apenas Estado")
 if isMarked:
     if uf_selected == "Todo o Brasil":
         df_filtered = df_acidentes_transito.df_acidentes
+        zoom = 3
     else:
         df_filtered = df_acidentes_transito.get_dataframe_uf(uf_selected)
+        zoom = 6
 else:
     list_city = df_acidentes_transito.get_list_cities(uf_selected)
     city_selected = st.sidebar.selectbox("Selecione o Município", options=list_city)
     df_filtered = df_acidentes_transito.get_dataframe_filtered(uf_selected, city_selected)
-    center_uf = [df_filtered['longitude'].iloc[0], df_filtered['latitude'].iloc[0]]
+    st.write(df_filtered.empty)
+    center_uf = [df_filtered['latitude'].iloc[0], df_filtered['longitude'].iloc[0]]
+    zoom = 12
 
 ######################################### CONTEÚDO DA PÁGINA - MAPA #########################################
 st.markdown("### Mapa Interativo de Acidentes de Trânsito no Brasil")
@@ -43,16 +47,17 @@ with column_map:
             "ScatterplotLayer",
             df_filtered,
             get_position=['longitude', 'latitude'],
-            get_radius=500,
+            get_radius=100,
             get_color=[152, 0, 67, 255],  # Cor vermelha
-            pickable=True
+            pickable=True,
+            extruded=True
         )
 
         # Definir o estado de visualização do mapa
         view_state = pdk.ViewState(
-            latitude=center_uf[0],
             longitude=center_uf[1],
-            zoom=6,
+            latitude=center_uf[0],
+            zoom=zoom,
             pitch=0
         )
 
