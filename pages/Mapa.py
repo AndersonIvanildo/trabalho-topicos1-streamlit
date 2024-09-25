@@ -20,7 +20,7 @@ else:
     list_city = df_acidentes_transito.get_list_cities(uf_selected)
     city_selected = st.sidebar.selectbox("Selecione o Município", options=list_city)
     df_filtered = df_acidentes_transito.get_dataframe_filtered(uf_selected, city_selected)
-    center_uf = [df_filtered['longitude'][0], df_filtered['latitude'][1]]
+    center_uf = [df_filtered['longitude'].iloc[0], df_filtered['latitude'].iloc[0]]
 
 ######################################### CONTEÚDO DA PÁGINA - MAPA #########################################
 st.markdown("### Mapa Interativo de Acidentes de Trânsito no Brasil")
