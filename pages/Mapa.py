@@ -11,6 +11,7 @@ center_uf = df_acidentes_transito.get_uf_centerpoint(uf_selected)
 
 isMarked = st.sidebar.checkbox("Apenas Estado")
 
+######################################### CONFIGURAÇÕES DAS VARIÁVEIS #########################################
 if isMarked:
     if uf_selected == "Todo o Brasil":
         df_filtered = df_acidentes_transito.df_acidentes
@@ -22,8 +23,10 @@ else:
     list_city = df_acidentes_transito.get_list_cities(uf_selected)
     city_selected = st.sidebar.selectbox("Selecione o Município", options=list_city)
     df_filtered = df_acidentes_transito.get_dataframe_filtered(uf_selected, city_selected)
-    st.write(df_filtered.empty)
-    center_uf = [df_filtered['latitude'].iloc[0], df_filtered['longitude'].iloc[0]]
+    if df_filtered.empty:
+        pass
+    else:
+        center_uf = [df_filtered['latitude'].iloc[0], df_filtered['longitude'].iloc[0]]
     zoom = 12
 
 ######################################### CONTEÚDO DA PÁGINA - MAPA #########################################

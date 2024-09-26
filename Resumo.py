@@ -39,6 +39,6 @@ st.html("""
 st.write(df_acidentes_transito.df_acidentes.head(10))
 st.markdown('---')
 st.html("""
-        <p style="text-align: justify !important;"> Este é um projeto realizado realizado para o trabalho final da disciplina de Tópicos de Computação 1. Confira mais informações na ágina <strong>Sobre</strong>.</p>
+        <p style="text-align: justify !important;"> Este é um projeto realizado realizado para o trabalho final da disciplina de Tópicos de Computação 1. Confira mais informações na página <strong>Sobre</strong>.</p>
 
 """)

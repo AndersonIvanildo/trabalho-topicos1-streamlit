@@ -38,5 +38,16 @@ class DF_Acidentes():
     def get_dataframe_filtered(self, uf, municipio):
         filter = (df_acidentes['uf'] == uf) & (self.df_acidentes['municipio'] == municipio)
         return self.df_acidentes.loc[filter]
+    
+    def get_dataframe_from_data(self, list_years=None, list_months=None):
+        df_filtered = self.df_acidentes
+
+        if list_years is not None:
+            df_filtered = df_filtered[df_filtered['ano'].isin(list_years)]
+        
+        if list_months is not None:
+            df_filtered = df_filtered[df_filtered['mes'].isin(list_months)]
+
+        return df_filtered
 
 df_acidentes_transito = DF_Acidentes()
