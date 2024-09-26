@@ -57,9 +57,6 @@ total_min_acidentes = row_min_acidentes['total_acidentes']
 # Substituindo números dos meses por nomes
 df_filtered['mes_nome'] = df_filtered['mes'].map(dict_months)
 
-######################################### EXIBIÇÃO DAS MÉTRICAS #########################################
-st.subheader("Métricas Resumidas")
-
 ######################################### GRÁFICO DE BARRAS HORIZONTAIS #########################################
 # Criando um DataFrame com as informações dos meses com maior e menor número de acidentes
 df_extremos = {
