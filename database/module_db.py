@@ -50,4 +50,5 @@ class DF_Acidentes():
 
         return df_filtered
 
+
 df_acidentes_transito = DF_Acidentes()
