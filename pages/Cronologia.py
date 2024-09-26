@@ -19,6 +19,7 @@ dict_months = {
 }
 
 ######################################### CONTEÚDO DA SIDEBAR #########################################
+st.sidebar.header("Cronologia")
 st.sidebar.write("Utilize as opções abaixo para melhor visualização!")
 select_years = st.sidebar.multiselect("Selecione o(s) ano(s):", options=[2021, 2022, 2023, 2024], default=[2021, 2022, 2023, 2024])
 select_months = st.sidebar.multiselect("Selecione o(s) meses", options=list(dict_months.values()), default=list(dict_months.values()))
@@ -69,8 +70,6 @@ fig_bar = px.bar(df_extremos, y="Total de Acidentes", x="Mês", orientation='v',
                  title="Mês com Maior e Menor Número de Acidentes",
                  labels={"Total de Acidentes": "Total de Acidentes", "Mês": "Mês"})
 
-st.sidebar.header("Cronologia")
-st.markdown("---")
 st.markdown("### Análise Temporal das Ocorrências de Acidentes")
 st.write("Nesta seção, você encontrará uma análise clara e objetiva da evolução dos acidentes de trânsito ao longo dos últimos quatro anos. Nosso objetivo é permitir que você visualize, de maneira simples e interativa, como os acidentes se comportaram ao longo do tempo e quais os períodos mais críticos.")
 st.markdown("---")
