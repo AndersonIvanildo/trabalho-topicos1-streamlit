@@ -32,7 +32,9 @@ class DF_Acidentes():
     def get_uf_centerpoint(self, UF='Todo o Brasil'):
         return self.uf_centerpoint[UF]
         
-    def get_dataframe_uf(self, UF=str) -> pd.DataFrame:
+    def get_dataframe_uf(self, UF="Todo o Brasil") -> pd.DataFrame:
+        if UF == "Todo o Brasil":
+            return self.df_acidentes
         return self.df_acidentes[self.df_acidentes['uf'] == UF]
     
     def get_dataframe_filtered(self, uf, municipio):
